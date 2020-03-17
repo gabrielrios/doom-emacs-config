@@ -14,9 +14,9 @@
 
        :completion
        company           ; the ultimate code completion backend
-       ;;helm              ; the *other* search engine for love and life
+       helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
-       ivy               ; a search engine for love and life
+       (ivy +fuzzy +prescient)               ; a search engine for love and life
 
        :ui
        ;;deft              ; notational velocity for Emacs
@@ -67,6 +67,8 @@
        ;;term              ; terminals in Emacs
        ;;vterm             ; another terminals in Emacs
 
+       :checkers syntax
+
        :tools
        ;;ansible
        ;;debugger          ; FIXME stepping through code, to help you add bugs
@@ -75,12 +77,12 @@
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        eval              ; run code, run (also, repls)
-       flycheck          ; tasing you for every semicolon you forget
+       ;; flycheck          ; tasing you for every semicolon you forget
        ;;flyspell          ; tasing you for misspelling mispelling
        ;;gist              ; interacting with github gists
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
-       ;;lsp
+       ; lsp
        macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
@@ -91,7 +93,7 @@
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
-       ;;wakatime
+       ;; wakatime
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -101,7 +103,7 @@
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
-       ;;csharp            ; unity, .NET, and mono shenanigans
+       csharp            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
        ;;erlang            ; an elegant language for a more civilized age
        ;;elixir            ; erlang done right
@@ -131,14 +133,14 @@
         +pandoc          ; pandoc integration into org's exporter
         +present)        ; using Emacs for presentations
        ;;perl              ; write code no one else can comprehend
-       ;;php               ; perl's insecure younger brother
+       php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        ;;python            ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
-       ;;rest              ; Emacs as a REST client
-       ruby              ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       rest              ; Emacs as a REST client
+       (ruby +rails)              ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
@@ -160,8 +162,8 @@
        :app
        ;;calendar
        ;;irc               ; how neckbeards socialize
-       ;;(rss +org)        ; emacs as an RSS reader
-       ;;twitter           ; twitter client https://twitter.com/vnought
+       (rss +org)        ; emacs as an RSS reader
+       twitter           ; twitter client https://twitter.com/vnought
        ;;(write            ; emacs for writers (fiction, notes, papers, etc.)
        ;; +wordnut         ; wordnet (wn) search
        ;; +langtool)       ; a proofreader (grammar/style check) for Emacs
@@ -175,3 +177,20 @@
        ;; provides a Spacemacs-inspired keybinding scheme and a smartparens
        ;; config. Use it as a reference for your own modules.
        (default +bindings +smartparens))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(mouse-wheel-progressive-speed nil)
+ '(mouse-wheel-scroll-amount (quote (1 ((shift) . 5) ((control)))))
+ '(org-journal-dir "~/OneDrive/org/" t)
+ '(org-journal-file-format "%Y%m%d.org" t)
+ '(safe-local-variable-values (quote ((encoding . utf-8))))
+ '(wakatime-api-key "f8f80b32-44d9-4298-9984-ea934da92893"))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
