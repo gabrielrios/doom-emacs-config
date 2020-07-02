@@ -21,8 +21,8 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "Fira Code" :size 15)
-      doom-variable-pitch-font (font-spec :family "Noto Sans" :size 13))
+(setq doom-font (font-spec :family "Fira Code" :size 15 :weight 'normal)
+      doom-variable-pitch-font (font-spec :family "Fira Code" :size 15))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -58,6 +58,16 @@
 (setq-hook! python-mode python-indent-offset 2)
 (setq-hook! js-mode js-indent-level 2)
 (setq-hook! js2-mode js2-indent-level 2)
+
+;; Indent all html pages code with 2 spaces
+(setq-hook! web-mode web-mode-markup-indent-offset 2)
+(setq-hook! web-mode web-mode-css-indent-offset 2)
+(setq-hook! web-mode web-mode-code-indent-offset 2)
+
+;; Start code blocks on HTML with two space
+(setq web-mode-style-padding 2)
+(setq web-mode-script-padding 2)
+(setq web-mode-block-padding 0)
 
 (when IS-LINUX
   (font-put doom-font :weight 'semi-light))
@@ -95,7 +105,7 @@
         "T" #'browse-dotfiles))
 
 ;;; :tools magit
-(setq magit-repository-directories '(("~/code" . 2))
+(setq magit-repository-directories '(("~/Code" . 2))
       magit-save-repository-buffers nil
       transient-values '((magit-rebase "--autosquash")
                          (magit-pull "--rebase")))
@@ -106,11 +116,5 @@
 (after! org
   (add-to-list 'org-modules 'org-habit t))
 
-(defun web-mode-indent-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-)
-(add-hook 'web-mode-hook  'web-mode-indent-hook)
 
+(add-to-list 'auto-mode-alist '("\\.rhtml\\'" . web-mode))
