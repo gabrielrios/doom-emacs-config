@@ -49,7 +49,6 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! org-journal)
 (package! inflections)
 (package! projectile-rails)
 (package! exec-path-from-shell)

@@ -69,12 +69,6 @@
 (setq web-mode-script-padding 2)
 (setq web-mode-block-padding 0)
 
-(setq web-mode-engines-alist
-      '(("ruby"    . "\\.rhtml\\'"))
-)
-
-(add-to-list 'auto-mode-alist '("\\.rhtml\\'" . web-mode))
-
 (when IS-LINUX
   (font-put doom-font :weight 'semi-light))
 (when IS-MAC
@@ -121,10 +115,10 @@
       org-ellipsis " ▼ ")
 (setq org-journal-dir "~/OneDrive/journal")
 
+(setq org-roam-directory "~/OneDrive/org-roam/")
+
 (after! org
   (add-to-list 'org-modules 'org-habit t))
-
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
