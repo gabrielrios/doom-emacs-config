@@ -69,6 +69,12 @@
 (setq web-mode-script-padding 2)
 (setq web-mode-block-padding 0)
 
+(setq web-mode-engines-alist
+      '(("ruby"    . "\\.rhtml\\'"))
+)
+
+(add-to-list 'auto-mode-alist '("\\.rhtml\\'" . web-mode))
+
 (when IS-LINUX
   (font-put doom-font :weight 'semi-light))
 (when IS-MAC
@@ -119,7 +125,6 @@
   (add-to-list 'org-modules 'org-habit t))
 
 
-(add-to-list 'auto-mode-alist '("\\.rhtml\\'" . web-mode))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
