@@ -21,7 +21,7 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "Fira Code" :size 15 :weight 'normal)
+(setq doom-font (font-spec :family "Fira Code" :size 15 :weight 'regular)
       doom-variable-pitch-font (font-spec :family "Fira Code" :size 15))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -58,6 +58,7 @@
 (setq-hook! python-mode python-indent-offset 2)
 (setq-hook! js-mode js-indent-level 2)
 (setq-hook! js2-mode js2-indent-level 2)
+(setq-hook! ruby-mode ruby-indent-level 2)
 
 ;; Indent all html pages code with 2 spaces
 (setq-hook! web-mode web-mode-markup-indent-offset 2)
