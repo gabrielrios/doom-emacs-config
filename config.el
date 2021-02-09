@@ -59,6 +59,7 @@
 (setq-hook! js-mode js-indent-level 2)
 (setq-hook! js2-mode js2-indent-level 2)
 (setq-hook! ruby-mode ruby-indent-level 2)
+(setq-hook! css-mode css-indent-offset 2)
 
 ;; Indent all html pages code with 2 spaces
 (setq-hook! web-mode web-mode-markup-indent-offset 2)
