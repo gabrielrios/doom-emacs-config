@@ -58,3 +58,5 @@
 (package! ruby-json-to-hash)
 (package! rails-routes)
 (package! rails-i18n)
+
+(package! key-chord)

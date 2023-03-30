@@ -350,33 +350,42 @@
 (setq vterm-always-compile-module t)
 
 ;; make flycheck use bundle instead of rubocop latest version
-(defun project-has-rubocop ()
-  (let ((found nil))
-    (cl-block find-rubocop
-      (mapc (lambda (line) (when (string-match "rubocop" line) (setq found t) (cl-return-from find-rubocop)))
-            (with-temp-buffer
-              (insert-file-contents (concat (projectile-project-root) "Gemfile.lock"))
-              (split-string (buffer-string) "\n" t))))
-    found))
+;; (defun project-has-rubocop ()
+;;   (let ((found nil))
+;;     (cl-block find-rubocop
+;;       (mapc (lambda (line) (when (string-match "rubocop" line) (setq found t) (cl-return-from find-rubocop)))
+;;             (with-temp-buffer
+;;               (insert-file-contents (concat (projectile-project-root) "Gemfile.lock"))
+;;               (split-string (buffer-string) "\n" t))))
+;;     found))
 
-(defvar rubocop-append-command '("bundle" "exec")
-  "Commands to run before rubocop")
+;; (defvar rubocop-append-command '("bundle" "exec")
+;;   "Commands to run before rubocop")
 
-(defvar disabled-checkers '("bundle" "exec")
-  "Commands to run before rubocop")
+;; (defvar disabled-checkers '("bundle" "exec")
+;;   "Commands to run before rubocop")
 
-(add-hook 'server-switch-hook (lambda () (select-frame-set-input-focus (selected-frame))))
+;; (add-hook 'server-switch-hook (lambda () (select-frame-set-input-focus (selected-frame))))
 
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (if (and (not (eq (projectile-project-root) nil)) (file-exists-p (concat (projectile-project-root) "Gemfile.lock")) (project-has-rubocop))
-                (progn
-                  (setq-local flycheck-checker 'ruby-rubocop)
-                  (setq-local flycheck-command-wrapper-function
-                              (lambda (command) (append rubocop-append-command command))))
+;; (add-hook 'ruby-mode-hook
+;;           (lambda ()
+;;             (if (and (not (eq (projectile-project-root) nil)) (file-exists-p (concat (projectile-project-root) "Gemfile.lock")) (project-has-rubocop))
+;;                 (progn
+;;                   (setq-local flycheck-checker 'ruby-rubocop)
+;;                   (setq-local flycheck-command-wrapper-function
+;;                               (lambda (command) (append rubocop-append-command command))))
 
-              (setq-local flycheck-disabled-checkers '(ruby-reek ruby-rubylint ruby-rubocop)))))
+;;               (setq-local flycheck-disabled-checkers '(ruby-reek ruby-rubylint ruby-rubocop)))))
 
-(defvar ruby-disabled-checkers '(ruby-reek lsp ruby-rubylint) "Checkers to automatically disable on ruby files.")
+;; (defvar ruby-disabled-checkers '(ruby-reek lsp ruby-rubylint) "Checkers to automatically disable on ruby files.")
 
-(add-hook! 'ruby-mode-hook (setq-local flycheck-disabled-checkers ruby-disabled-checkers))
+;; (add-hook! 'ruby-mode-hook (setq-local flycheck-disabled-checkers ruby-disabled-checkers))
+
+
+(after! lsp-mode
+  (setq lsp-disabled-clients '(typeprof-ls)))
+
+
+(require 'key-chord)
+(key-chord-mode t)
+(key-chord-define-global "jk" 'evil-normal-state)
