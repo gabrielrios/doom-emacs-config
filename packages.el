@@ -60,3 +60,8 @@
 (package! rails-i18n)
 
 (package! key-chord)
+
+(package! copilot
+  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+
+(package! company-tabnine :recipe (:host github :repo "TommyX12/company-tabnine"))

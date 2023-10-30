@@ -105,7 +105,7 @@
 ;; Start code blocks on HTML with two space
 (setq web-mode-style-padding 2)
 (setq web-mode-script-padding 2)
-(setq web-mode-block-padding 0)
+(setq web-mode-block-padding 2)
 
 (when IS-LINUX
   (font-put doom-font :weight 'regular))
@@ -116,8 +116,8 @@
 ;;; Frames/Windows
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . web-mode))
-(when IS-MAC
-  (add-hook 'window-setup-hook #'toggle-frame-maximized))
+;; (when IS-MAC
+;;   (add-hook 'window-setup-hook #'toggle-frame-maximized))
 
 
 (projectile-rails-global-mode)
@@ -179,14 +179,6 @@
       transient-values '((magit-rebase "--autosquash")
                          (magit-pull "--rebase")))
 
-;;; :lang org
-(setq org-directory "~/org/")
-(setq org-agenda-category-icon-alist
-          `(
-            ("@inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-orange)) nil nil :ascent center)
-            ("@home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-green)) nil nil :ascent center)
-            ("@work" ,(list (all-the-icons-faicon "briefcase" :face 'all-the-icons-blue)) nil nil :ascent center)
-            ))
 
 (setq org-refile-targets
       '((nil :maxlevel . 1)
@@ -389,3 +381,19 @@
 (require 'key-chord)
 (key-chord-mode t)
 (key-chord-define-global "jk" 'evil-normal-state)
+
+
+;; accept completion from copilot and fallback to company
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
+(after! company
+  (setq +lsp-company-backends '(company-tabnine :separate company-capf company-yasnippet))
+  (setq company-show-numbers t)
+  (setq company-idle-delay 0)
+)
